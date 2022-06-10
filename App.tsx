@@ -13,25 +13,11 @@ import React from 'react';
 // import {rootStore, StoreProvider, trunk} from './src/store';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ColorPalette, ColorPaletteModal, Home} from './src/screens';
+import { BottomTabsNavigator } from './src/navigator';
 
 const RootStack = createStackNavigator();
-const MainStack = createStackNavigator();
 
-const MainStackScreens = () => {
-  return (
-    <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen
-        name="ColorPalette"
-        component={ColorPalette}
-        options={({route}) => ({
-          title: (route.params as {paletteName: string; colors: any[]})
-            .paletteName,
-        })}
-      />
-    </MainStack.Navigator>
-  );
-};
+
 const App = () => {
   // const [storeLoading, setStoreLoading] = useState('loading');
   // useEffect(() => {
@@ -45,14 +31,7 @@ const App = () => {
   return (
     // <StoreProvider value={rootStore}>
     <NavigationContainer>
-     <RootStack.Navigator screenOptions={{
-       presentation: "modal"
-     }}>
-      <RootStack.Screen  name='Main' component={MainStackScreens} options={{
-        headerShown: false
-      }}/>
-      <RootStack.Screen name='ColorPaletteModal' component={ColorPaletteModal}/>
-     </RootStack.Navigator>
+      <BottomTabsNavigator />
     </NavigationContainer>
     // </StoreProvider>
   );
